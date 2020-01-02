@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: default
+  creationTimestamp: null
+  labels:
+    app: echo
+  name: echo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: echo
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: echo
+    spec:
+      containers:
+        - image: melalex/echo
+          env:
+            - name: MONGO_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: echo-config
+                  key: MONGO_HOST
+            - name: MONGO_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: echo-config
+                  key: MONGO_DATABASE
+            - name: MONGO_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: echo-config
+                  key: MONGO_USERNAME
+            - name: MONGO_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: echo-config
+                  key: MONGO_PASSWORD
+          name: echo
+          resources: {}
+status: {}
