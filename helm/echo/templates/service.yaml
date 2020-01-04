@@ -4,12 +4,14 @@ metadata:
   name: {{ include "echo.fullname" . }}
   labels:
     {{- include "echo.labels" . | nindent 4 }}
+status:
+  loadBalancer: {}
 spec:
   type: {{ .Values.service.type }}
   ports:
-    - port: {{ .Values.service.port }}
-      targetPort: http
+    - name: http
+      port: {{ .Values.service.port }}
       protocol: TCP
-      name: http
+      targetPort: {{ .Values.service.port }}
   selector:
     {{- include "echo.selectorLabels" . | nindent 4 }}
