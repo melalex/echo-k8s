@@ -27,3 +27,9 @@ dependencies:
     condition: mongodb.enabled
     tags:
       - echo-mongo
+  - name: kube-prometheus-stack
+    version: 13.13.1
+    repository: "https://prometheus-community.github.io/helm-charts"
+    condition: kube-prometheus-stack.enabled
+    tags:
+      - echo-prometheus

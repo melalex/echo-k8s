@@ -29,10 +29,12 @@ spec:
   rules:
     - http:
         paths:
-        {{- range .Values.ingress.paths }}
-          - path: {{ . }}
+          - path: /
+            backend:
+              serviceName: {{ .Release.Name }}-grafana
+              servicePort: 80
+          - path: /v1/echo
             backend:
               serviceName: {{ $fullName }}
               servicePort: {{ $svcPort }}
-        {{- end }}
 {{- end }}

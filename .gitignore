@@ -30,3 +30,7 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### Custom ###
+helm/echo/Chart.lock
+helm/echo/charts
